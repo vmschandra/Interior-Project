@@ -56,7 +56,7 @@ export default function Register() {
             pricingTier: form.pricingTier, bio: form.bio, areasServed: form.areasServed }
       const { user } = await register(payload)
       toast.success(role === 'DESIGNER'
-        ? 'Profile submitted for review. We'll notify you within 24–48 hours.'
+        ? 'Profile submitted for review. We\'ll notify you within 24-48 hours.'
         : 'Account created! Welcome to DesignNest.')
       navigate(role === 'DESIGNER' ? '/dashboard/designer' : '/dashboard/customer')
     } catch (err) {

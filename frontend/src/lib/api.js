@@ -1,15 +1,19 @@
 import axios from 'axios'
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api'
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: API_BASE_URL,
   withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
 })
 
+// Lazy getter to avoid circular dependency with authStore
+const getAuthStore = () => import('@/store/authStore').then(m => m.useAuthStore)
+
 // Attach access token from store on each request
-api.interceptors.request.use((config) => {
-  // Import lazily to avoid circular deps
-  const { useAuthStore } = require('@/store/authStore')
+api.interceptors.request.use(async (config) => {
+  const useAuthStore = await getAuthStore()
   const token = useAuthStore.getState().accessToken
   if (token) config.headers.Authorization = `Bearer ${token}`
   return config
@@ -43,7 +47,7 @@ api.interceptors.response.use(
       originalRequest._retry = true
       isRefreshing = true
       try {
-        const { useAuthStore } = require('@/store/authStore')
+        const useAuthStore = await getAuthStore()
         const token = await useAuthStore.getState().refreshToken()
         if (token) {
           processQueue(null, token)
