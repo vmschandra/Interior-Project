@@ -1,0 +1,266 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ─────────────────────────────────────────────────────────────────
+
+enum Role {
+  CUSTOMER
+  DESIGNER
+  ADMIN
+}
+
+enum PricingTier {
+  BUDGET
+  MID
+  PREMIUM
+}
+
+enum DesignerStatus {
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  SUSPENDED
+}
+
+enum ProjectStatus {
+  DRAFT
+  PUBLISHED
+  DELETED
+}
+
+enum SubscriptionPlan {
+  MONTHLY
+  YEARLY
+}
+
+enum RolePlan {
+  DESIGNER_PREMIUM
+  CUSTOMER_PREMIUM
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  EXPIRED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  SUCCESS
+  FAILED
+  REFUNDED
+}
+
+enum ConversationStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+// ─── Core Tables ───────────────────────────────────────────────────────────
+
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  phone             String?
+  passwordHash      String
+  role              Role
+  isEmailVerified   Boolean   @default(false)
+  isPhoneVerified   Boolean   @default(false)
+  isPremium         Boolean   @default(false)
+  isActive          Boolean   @default(true)
+  emailOtp          String?
+  emailOtpExpiresAt DateTime?
+  passwordResetToken String?
+  passwordResetExpiresAt DateTime?
+  refreshToken      String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  customerProfile   CustomerProfile?
+  designerProfile   DesignerProfile?
+  subscriptions     Subscription[]
+  payments          Payment[]
+  sentMessages      Message[]       @relation("SentMessages")
+  customerConversations Conversation[] @relation("CustomerConversations")
+  designerConversations Conversation[] @relation("DesignerConversations")
+  reviewsGiven      Review[]        @relation("ReviewsGiven")
+  reviewsReceived   Review[]        @relation("ReviewsReceived")
+
+  @@map("users")
+}
+
+model CustomerProfile {
+  id                      String   @id @default(cuid())
+  userId                  String   @unique
+  user                    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name                    String
+  city                    String?
+  profilePhotoUrl         String?
+  favoritedDesignerIds    String[]
+  profileCompletionScore  Int      @default(0)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  @@map("customer_profiles")
+}
+
+model DesignerProfile {
+  id                     String         @id @default(cuid())
+  userId                 String         @unique
+  user                   User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name                   String
+  firmName               String?
+  bio                    String?        @db.Text
+  experienceYears        Int            @default(0)
+  areasServed            String[]
+  pricingTier            PricingTier    @default(BUDGET)
+  profilePhotoUrl        String?
+  certifications         String[]
+  avgRating              Float          @default(0)
+  totalReviews           Int            @default(0)
+  totalProfileViews      Int            @default(0)
+  slug                   String         @unique
+  status                 DesignerStatus @default(PENDING_REVIEW)
+  rejectionReason        String?
+  profileCompletionScore Int            @default(0)
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime       @updatedAt
+
+  projects               Project[]
+
+  @@index([areasServed])
+  @@index([pricingTier])
+  @@index([avgRating])
+  @@index([status])
+  @@map("designer_profiles")
+}
+
+model Project {
+  id             String        @id @default(cuid())
+  designerId     String
+  designer       DesignerProfile @relation(fields: [designerId], references: [id], onDelete: Cascade)
+  title          String
+  description    String?       @db.Text
+  budgetMin      Int?
+  budgetMax      Int?
+  area           String?
+  styleTags      String[]
+  completionDate DateTime?
+  status         ProjectStatus @default(PUBLISHED)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  images         ProjectImage[]
+
+  @@index([designerId, status])
+  @@map("projects")
+}
+
+model ProjectImage {
+  id                String   @id @default(cuid())
+  projectId         String
+  project           Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  imageUrl          String
+  thumbnailUrl      String?
+  cloudinaryPublicId String
+  sortOrder         Int      @default(0)
+  fileSizeBytes     Int?
+  createdAt         DateTime @default(now())
+
+  @@index([projectId])
+  @@map("project_images")
+}
+
+model Subscription {
+  id                    String             @id @default(cuid())
+  userId                String
+  user                  User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planType              SubscriptionPlan
+  rolePlan              RolePlan
+  amount                Int
+  currency              String             @default("INR")
+  razorpaySubscriptionId String?           @unique
+  startsAt              DateTime
+  expiresAt             DateTime
+  graceEndsAt           DateTime?
+  status                SubscriptionStatus @default(ACTIVE)
+  cancelledAt           DateTime?
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+
+  payments              Payment[]
+
+  @@index([userId, status])
+  @@index([expiresAt])
+  @@map("subscriptions")
+}
+
+model Payment {
+  id                String        @id @default(cuid())
+  userId            String
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscriptionId    String?
+  subscription      Subscription? @relation(fields: [subscriptionId], references: [id])
+  amount            Int
+  currency          String        @default("INR")
+  razorpayPaymentId String?       @unique
+  razorpayOrderId   String?
+  status            PaymentStatus
+  createdAt         DateTime      @default(now())
+
+  @@map("payments")
+}
+
+model Conversation {
+  id                  String             @id @default(cuid())
+  customerId          String
+  customer            User               @relation("CustomerConversations", fields: [customerId], references: [id])
+  designerId          String
+  designer            User               @relation("DesignerConversations", fields: [designerId], references: [id])
+  lastMessageAt       DateTime?
+  customerUnreadCount Int                @default(0)
+  designerUnreadCount Int                @default(0)
+  status              ConversationStatus @default(ACTIVE)
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  messages            Message[]
+
+  @@unique([customerId, designerId])
+  @@map("conversations")
+}
+
+model Message {
+  id             String   @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  senderId       String
+  sender         User     @relation("SentMessages", fields: [senderId], references: [id])
+  senderRole     Role
+  content        String   @db.VarChar(2000)
+  isRead         Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  @@index([conversationId, createdAt])
+  @@map("messages")
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   User     @relation("ReviewsGiven", fields: [customerId], references: [id])
+  designerId String
+  designer   User     @relation("ReviewsReceived", fields: [designerId], references: [id])
+  rating     Int
+  comment    String?  @db.Text
+  createdAt  DateTime @default(now())
+
+  @@unique([customerId, designerId])
+  @@map("reviews")
+}
