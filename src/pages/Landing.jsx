@@ -43,12 +43,12 @@ function DesignerCard({ designer }) {
       {/* Photo placeholder */}
       <div
         className="h-56 flex items-center justify-center relative overflow-hidden"
-        style={{ background: 'rgba(168,131,98,0.08)' }}
+        style={{ background: 'rgba(57,255,20,0.08)' }}
       >
         <div
           className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-semibold"
           style={{
-            background: 'rgba(168,131,98,0.15)',
+            background: 'rgba(57,255,20,0.15)',
             color: 'var(--color-gold-lt)',
             fontFamily: 'Cormorant Garamond, serif',
           }}
@@ -91,13 +91,13 @@ export default function Landing() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse 80% 60% at 60% 40%, rgba(168,131,98,0.07) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse 80% 60% at 60% 40%, rgba(57,255,20,0.07) 0%, transparent 70%)',
           }}
         />
         {/* Horizontal rule accent */}
         <div
           className="absolute left-0 right-0 top-1/2 -translate-y-1/2 pointer-events-none"
-          style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(168,131,98,0.12), transparent)' }}
+          style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(57,255,20,0.12), transparent)' }}
         />
 
         <div className="container-page relative z-10 py-24 lg:py-32">
@@ -239,7 +239,7 @@ export default function Landing() {
                 )}
                 <div
                   className="text-5xl font-light mb-6"
-                  style={{ fontFamily: 'Cormorant Garamond, serif', color: 'rgba(168,131,98,0.2)' }}
+                  style={{ fontFamily: 'Cormorant Garamond, serif', color: 'rgba(57,255,20,0.2)' }}
                 >
                   {step.num}
                 </div>
@@ -260,7 +260,7 @@ export default function Landing() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse 60% 80% at 50% 50%, rgba(168,131,98,0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse 60% 80% at 50% 50%, rgba(57,255,20,0.08) 0%, transparent 70%)',
           }}
         />
         <div className="container-narrow text-center relative z-10">

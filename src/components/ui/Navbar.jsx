@@ -36,7 +36,7 @@ export default function Navbar() {
         <Link to="/" className="flex items-center gap-2.5 group">
           <div
             className="w-8 h-8 rounded flex items-center justify-center text-xs font-bold transition-transform group-hover:scale-105"
-            style={{ background: 'var(--color-gold)', color: '#1A1612' }}
+            style={{ background: 'var(--color-gold)', color: '#0B1929' }}
           >
             DN
           </div>

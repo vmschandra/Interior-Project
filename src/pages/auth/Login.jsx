@@ -37,7 +37,7 @@ export default function Login() {
           <Link to="/" className="inline-flex items-center gap-2.5 mb-6">
             <div
               className="w-9 h-9 rounded flex items-center justify-center text-sm font-bold"
-              style={{ background: 'var(--color-gold)', color: '#1A1612' }}
+              style={{ background: 'var(--color-gold)', color: '#0B1929' }}
             >
               DN
             </div>

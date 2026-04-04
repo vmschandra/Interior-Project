@@ -27,7 +27,7 @@ export default function CustomerOverview() {
         ))}
       </div>
       {!user?.isPremium && (
-        <div className="card p-6" style={{ border: '1px solid rgba(168,131,98,0.3)', background: 'rgba(168,131,98,0.04)' }}>
+        <div className="card p-6" style={{ border: '1px solid rgba(57,255,20,0.3)', background: 'rgba(57,255,20,0.04)' }}>
           <h3 className="text-xl font-light mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Unlock Premium</h3>
           <p className="text-sm mb-4" style={{ color: 'var(--color-muted)' }}>Upgrade to chat directly with interior designers. Starting at ₹1,000/month.</p>
           <Link to="/dashboard/customer/subscription" className="btn-primary">Upgrade Now</Link>

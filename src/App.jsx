@@ -49,13 +49,13 @@ export default function App() {
         position="top-right"
         toastOptions={{
           style: {
-            background: '#201C18',
-            color: '#E8DDD0',
-            border: '1px solid rgba(168,131,98,0.25)',
+            background: '#101F36',
+            color: '#E0FFD6',
+            border: '1px solid rgba(57,255,20,0.25)',
             borderRadius: '2px',
             fontSize: '14px',
           },
-          success: { iconTheme: { primary: '#A88362', secondary: '#1A1612' } },
+          success: { iconTheme: { primary: '#39FF14', secondary: '#0B1929' } },
         }}
       />
 

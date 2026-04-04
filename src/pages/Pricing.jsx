@@ -56,7 +56,7 @@ export default function Pricing() {
                 className="px-5 py-2 text-sm font-medium rounded transition-all capitalize"
                 style={{
                   background: billing === b ? 'var(--color-gold)' : 'transparent',
-                  color: billing === b ? '#1A1612' : 'var(--color-muted)',
+                  color: billing === b ? '#0B1929' : 'var(--color-muted)',
                 }}
               >
                 {b} {b === 'yearly' && <span className="text-xs ml-1 opacity-80">(save 25%)</span>}
@@ -76,7 +76,7 @@ export default function Pricing() {
               <div
                 key={role}
                 className="card p-8 relative overflow-hidden"
-                style={highlight ? { border: '1px solid var(--color-gold)', background: 'rgba(168,131,98,0.04)' } : {}}
+                style={highlight ? { border: '1px solid var(--color-gold)', background: 'rgba(57,255,20,0.04)' } : {}}
               >
                 {highlight && (
                   <div className="absolute top-0 left-0 right-0 h-0.5"

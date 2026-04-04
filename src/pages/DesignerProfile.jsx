@@ -70,12 +70,12 @@ function ProjectCard({ project, onClick }) {
     <button onClick={() => onClick(project)}
       className="card card-hover overflow-hidden group text-left w-full">
       <div className="h-44 flex items-center justify-center overflow-hidden"
-        style={{ background: 'rgba(168,131,98,0.06)' }}>
+        style={{ background: 'rgba(57,255,20,0.06)' }}>
         {hasImages ? (
           <img src={project.images[0].thumbnailUrl || project.images[0].imageUrl}
             alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         ) : (
-          <div className="text-4xl" style={{ fontFamily: 'Cormorant Garamond, serif', color: 'rgba(168,131,98,0.2)' }}>
+          <div className="text-4xl" style={{ fontFamily: 'Cormorant Garamond, serif', color: 'rgba(57,255,20,0.2)' }}>
             {project.title[0]}
           </div>
         )}
@@ -167,7 +167,7 @@ export default function DesignerProfile() {
             {/* Photo */}
             <div className="flex-shrink-0">
               <div className="w-28 h-28 rounded-full overflow-hidden flex items-center justify-center"
-                style={{ background: 'rgba(168,131,98,0.12)', border: '2px solid var(--color-border)' }}>
+                style={{ background: 'rgba(57,255,20,0.12)', border: '2px solid var(--color-border)' }}>
                 {designer.profilePhotoUrl ? (
                   <img src={designer.profilePhotoUrl} alt={designer.name} className="w-full h-full object-cover" />
                 ) : (
@@ -373,7 +373,7 @@ export default function DesignerProfile() {
             )}
             {selectedProject.images?.length === 0 && (
               <div className="mt-6 h-48 rounded flex items-center justify-center"
-                style={{ background: 'rgba(168,131,98,0.06)', border: '1px dashed var(--color-border)' }}>
+                style={{ background: 'rgba(57,255,20,0.06)', border: '1px dashed var(--color-border)' }}>
                 <span className="text-sm" style={{ color: 'var(--color-muted)' }}>No photos uploaded yet</span>
               </div>
             )}

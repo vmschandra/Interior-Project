@@ -7,31 +7,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        // DesignNest luxury warm palette (Somervilles-inspired)
-        stone: {
-          950: '#0D0B09',
-          900: '#1A1612',
-          850: '#201C18',
-          800: '#2A2420',
-          700: '#3D3530',
-          600: '#5C5148',
-          500: '#7A6B60',
-          400: '#A88362',
-          300: '#C9A87C',
-          200: '#D4B896',
-          100: '#E8DDD0',
-          50:  '#F5F0EA',
+        // DesignNest navy + fluorescent green palette
+        navy: {
+          950: '#030810',
+          900: '#071020',
+          850: '#0B1929',
+          800: '#101F36',
+          700: '#162D4A',
+          600: '#1E3D60',
+          500: '#2A5080',
+          400: '#3668A0',
+          300: '#4A82C0',
+          200: '#6BA0D8',
+          100: '#A0C8F0',
+          50:  '#D0E4F8',
         },
-        gold: {
-          DEFAULT: '#A88362',
-          light:   '#C9A87C',
-          pale:    '#D4B896',
-          muted:   'rgba(168,131,98,0.15)',
+        neon: {
+          DEFAULT: '#39FF14',
+          light:   '#6BFF4A',
+          pale:    '#A5FF8A',
+          muted:   'rgba(57,255,20,0.15)',
+          dark:    '#2ACC10',
         },
-        cream: {
-          DEFAULT: '#E8DDD0',
-          light:   '#F5F0EA',
-          dark:    '#D4B896',
+        mint: {
+          DEFAULT: '#E0FFD6',
+          light:   '#F0FFF0',
+          dark:    '#B8F0A0',
         },
       },
       fontFamily: {
@@ -59,7 +60,7 @@ export default {
       boxShadow: {
         'luxury': '0 1px 3px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.2)',
         'card':   '0 2px 8px rgba(0,0,0,0.15), 0 1px 2px rgba(0,0,0,0.1)',
-        'glow':   '0 0 20px rgba(168,131,98,0.25)',
+        'glow':   '0 0 20px rgba(57,255,20,0.25)',
       },
       backgroundImage: {
         'grain': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E\")",

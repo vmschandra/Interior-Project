@@ -46,7 +46,7 @@ export default function DashboardLayout({ role }) {
         <div className="flex items-center gap-3 px-5 py-5 border-b" style={{ borderColor: 'var(--color-border)' }}>
           <div
             className="w-8 h-8 rounded flex items-center justify-center text-xs font-bold flex-shrink-0"
-            style={{ background: 'var(--color-gold)', color: '#1A1612' }}
+            style={{ background: 'var(--color-gold)', color: '#0B1929' }}
           >
             DN
           </div>
@@ -92,7 +92,7 @@ export default function DashboardLayout({ role }) {
           <div className="flex items-center gap-2.5 mb-3">
             <div
               className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
-              style={{ background: 'rgba(168,131,98,0.2)', color: 'var(--color-gold-lt)' }}
+              style={{ background: 'rgba(57,255,20,0.2)', color: 'var(--color-gold-lt)' }}
             >
               {user?.email?.[0]?.toUpperCase() ?? 'U'}
             </div>

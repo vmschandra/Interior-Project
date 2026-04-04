@@ -79,7 +79,7 @@ export default function Register() {
           <Link to="/" className="inline-flex items-center gap-2.5 mb-5">
             <div
               className="w-9 h-9 rounded flex items-center justify-center text-sm font-bold"
-              style={{ background: 'var(--color-gold)', color: '#1A1612' }}
+              style={{ background: 'var(--color-gold)', color: '#0B1929' }}
             >
               DN
             </div>
@@ -116,7 +116,7 @@ export default function Register() {
               className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-medium rounded transition-all"
               style={{
                 background: role === value ? 'var(--color-gold)' : 'transparent',
-                color: role === value ? '#1A1612' : 'var(--color-muted)',
+                color: role === value ? '#0B1929' : 'var(--color-muted)',
               }}
             >
               <Icon size={15} /> {label}
@@ -201,7 +201,7 @@ export default function Register() {
                         className="p-3 text-left rounded border transition-all"
                         style={{
                           border: `1px solid ${form.pricingTier === tier.value ? 'var(--color-gold)' : 'var(--color-border)'}`,
-                          background: form.pricingTier === tier.value ? 'rgba(168,131,98,0.08)' : 'transparent',
+                          background: form.pricingTier === tier.value ? 'rgba(57,255,20,0.08)' : 'transparent',
                         }}
                       >
                         <div className="text-xs font-medium mb-0.5" style={{ color: form.pricingTier === tier.value ? 'var(--color-gold-lt)' : 'var(--color-text)' }}>
@@ -243,7 +243,7 @@ export default function Register() {
                         className="px-3 py-1.5 text-xs rounded border transition-all"
                         style={{
                           border: `1px solid ${form.areasServed.includes(city) ? 'var(--color-gold)' : 'var(--color-border)'}`,
-                          background: form.areasServed.includes(city) ? 'rgba(168,131,98,0.12)' : 'transparent',
+                          background: form.areasServed.includes(city) ? 'rgba(57,255,20,0.12)' : 'transparent',
                           color: form.areasServed.includes(city) ? 'var(--color-gold-lt)' : 'var(--color-muted)',
                         }}
                       >
@@ -252,7 +252,7 @@ export default function Register() {
                     ))}
                   </div>
                   {form.areasServed.length === 0 && (
-                    <p className="text-xs mt-2" style={{ color: 'rgba(168,131,98,0.6)' }}>
+                    <p className="text-xs mt-2" style={{ color: 'rgba(57,255,20,0.6)' }}>
                       Select at least one city to continue
                     </p>
                   )}

@@ -13,7 +13,7 @@ export default function Footer() {
             <div className="flex items-center gap-2.5 mb-4">
               <div
                 className="w-8 h-8 rounded flex items-center justify-center text-xs font-bold"
-                style={{ background: 'var(--color-gold)', color: '#1A1612' }}
+                style={{ background: 'var(--color-gold)', color: '#0B1929' }}
               >
                 DN
               </div>

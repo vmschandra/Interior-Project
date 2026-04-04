@@ -34,13 +34,13 @@ function DesignerCard({ designer }) {
   return (
     <Link to={`/designers/${designer.slug}`} className="card card-hover overflow-hidden group block">
       <div className="h-52 flex items-center justify-center relative overflow-hidden"
-        style={{ background: 'rgba(168,131,98,0.06)' }}>
+        style={{ background: 'rgba(57,255,20,0.06)' }}>
         {designer.profilePhotoUrl ? (
           <img src={designer.profilePhotoUrl} alt={designer.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         ) : (
           <div className="w-16 h-16 rounded-full flex items-center justify-center text-xl font-semibold"
-            style={{ background: 'rgba(168,131,98,0.15)', color: 'var(--color-gold-lt)',
+            style={{ background: 'rgba(57,255,20,0.15)', color: 'var(--color-gold-lt)',
               fontFamily: 'Cormorant Garamond, serif' }}>
             {initials}
           </div>
@@ -249,7 +249,7 @@ export default function Designers() {
                       className="px-2.5 py-1 text-xs rounded border transition-all"
                       style={{
                         border: `1px solid ${filters.areas.includes(city) ? 'var(--color-gold)' : 'var(--color-border)'}`,
-                        background: filters.areas.includes(city) ? 'rgba(168,131,98,0.12)' : 'transparent',
+                        background: filters.areas.includes(city) ? 'rgba(57,255,20,0.12)' : 'transparent',
                         color: filters.areas.includes(city) ? 'var(--color-gold-lt)' : 'var(--color-muted)',
                       }}>
                       {city}
@@ -266,7 +266,7 @@ export default function Designers() {
                     <label key={tier.value} className="flex items-center gap-2.5 cursor-pointer group">
                       <input type="checkbox" checked={filters.tiers.includes(tier.value)}
                         onChange={() => toggleFilter('tiers', tier.value)}
-                        className="accent-[#A88362]" />
+                        className="accent-[#39FF14]" />
                       <span className="text-sm group-hover:opacity-100 opacity-80">{tier.label}</span>
                     </label>
                   ))}
@@ -279,14 +279,14 @@ export default function Designers() {
                 <input type="range" min={0} max={5} step={0.5}
                   value={filters.minRating}
                   onChange={e => { setFilters(f => ({ ...f, minRating: parseFloat(e.target.value) })); setPage(1) }}
-                  className="w-full accent-[#A88362]" />
+                  className="w-full accent-[#39FF14]" />
                 <div className="text-xs mt-1" style={{ color: 'var(--color-muted)' }}>
                   {filters.minRating > 0 ? `${filters.minRating}+ stars` : 'Any rating'}
                 </div>
                 <label className="flex items-center gap-2.5 cursor-pointer mt-4 group">
                   <input type="checkbox" checked={filters.premiumOnly}
                     onChange={e => { setFilters(f => ({ ...f, premiumOnly: e.target.checked })); setPage(1) }}
-                    className="accent-[#A88362]" />
+                    className="accent-[#39FF14]" />
                   <span className="text-sm group-hover:opacity-100 opacity-80">Premium designers only</span>
                 </label>
               </div>
@@ -322,7 +322,7 @@ export default function Designers() {
                 className="w-9 h-9 text-sm rounded transition-all"
                 style={{
                   background: page === i + 1 ? 'var(--color-gold)' : 'var(--color-surface)',
-                  color: page === i + 1 ? '#1A1612' : 'var(--color-muted)',
+                  color: page === i + 1 ? '#0B1929' : 'var(--color-muted)',
                   border: `1px solid ${page === i + 1 ? 'var(--color-gold)' : 'var(--color-border)'}`,
                 }}
               >
